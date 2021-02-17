@@ -167,60 +167,62 @@
 <p><br></p>
 <p><img src="img/image1-1.png" alt=""></p>
 <p>プロジェクトを開いたら、プロジェクトウィンドウで新規フォルダを作成し、名前を「Prefabs」とします。<br>そして、その中に以前作成したCapsuleをドラッグ&amp;ドロップで入れてプレハブ化しておきましょう。</p>
-<p>UnityHubを開き、右上の新規作成ボタンを押してください。</p>
-<p>テンプレートは3Dのままで、プロジェクト名はなんでも構いません。ここでは「MaterialSample」としておきます。
-保存先を決めたら作成ボタンを押してください。</p>
 <p><br></p>
 <p><img src="img/image1-2.png" alt=""></p>
-<p>Unityが開けたらUnityエディタのレイアウトを任意の形にしてください。
-Unityエディタの右上の「Layout」から好きなレイアウトを設定できます。
-こちらの教材では「2 × 3」を利用します。</p>
-<p>そして新規で「Plane」を作成してください位置はX、Y、Z共に0にしておきましょう。</p>
+<p>次に何もない新規のシーンを作成します。
+もしくは初めからあるSampleSceneやWalkSceneを開いてください。
+そしてMainCameraを削除します。</p>
+<p>そしてプロジェクトウィンドウから、Capsuleと建物のプレハブをヒエラルキーウィンドウにドラッグ&amp;ドロップします。</p>
 <p><br></p>
-<h2 id="シーンビューをゲームビューに合わせる">シーンビューをゲームビューに合わせる</h2>
-<p>マテリアルの設定を見えやすくするためにシーンビューをゲームビューと同じカメラアングルに切り替えます。
-<br></p>
 <p><img src="img/image1-3.png" alt=""></p>
-<p>ヒエラルキーウィンドウでMainCameraを選択してください。
-そして、GameObjectメニューから「Align View to Selected」をクリックしてください。</p>
+<p>次に「PFB_Building_Full」に初めからついている「Light Probe Group」「Bathroom_ReflectionProbe」「Bedroom_ReflectionProbe」を非アクティブにします。
+別の建物オブジェクトを利用している場合はこの作業を行わなくて大丈夫です。</p>
+<p>これで準備は完了です。</p>
 <p><br></p>
+<h2 id="3dオブジェクトをstaticにする">3DオブジェクトをStaticにする</h2>
 <p><img src="img/image1-4.png" alt=""></p>
-<p>そうすると、このようにゲームビューとシーンビューが同じ見た目になりました。<br>これで準備は完了です。  </p>
-<p>シーンビューが全体的に暗いといった場合は、Windowタブから「Rendering -&gt; LightingSettings -&gt; AutoGenerate」にチェックを入れてください。<br>PCへの負荷がかかりますが、きちんと光が表現できるようになります。</p>
+<p>次に建物全体や家具などを全てStatic（静的）にします。  </p>
+<p>Staticにする理由は、以前の講習で話した通り光をベイクすることによりデバイスへの負荷を減らす・陰影をリッチな表現にするためです。<br>今回使用したアセットは既にStaticにチェックが入っているのでそのまま利用します。</p>
+<p>また、マテリアルに関しても本来であれば前回までで学習したようにMetallicやSmoothnessといった値を変更して調整する必要があるのですが、今回使用しているアセットは既に調整が済んでいるのでこのまま利用したいと思います。</p>
+<p>もしマテリアルを調整したい場合は、プロジェクトウィンドウの「FurnishiedCabin -&gt; Meshes -&gt; Materials」フォルダの中に格納されているマテリアルを変更してみてください。</p>
 <p><br></p>
-<h2 id="スフィアの作成">スフィアの作成</h2>
+<h2 id="ライティングの設定">ライティングの設定</h2>
 <p><img src="img/image1-5.png" alt=""></p>
-<p>次にマテリアルを変更するサンプルとしてSphereを配置してください。<br>SphereのTransformを<br>X : 0<br>Y : 1<br>Z : 0 
-に変更してください。
-そしてSphereをシーンビューで拡大しておきます。</p>
-<p><br></p>
-<h2 id="単色マテリアル">単色マテリアル</h2>
-<p>まずは基本の単色マテリアルを設定してみます。<br>単色マテリアルでも金属の質感やコンクリートのような質感を表現することができます。</p>
+<p>次にライティングの設定を行います。<br>モデルをリアルに表現するにはライティングの設定がとても重要なのですが、思い通りの表現ができるようになるためには何度もライティングの調整と確認を繰り返し覚える必要があります。  </p>
+<p>まずはUnityの「Edit -&gt; ProjectSettings」を開きましょう。</p>
 <p><br></p>
 <p><img src="img/image1-6.png" alt=""></p>
-<p>まずはプロジェクトウィンドウから新規フォルダを作成し、名前を「Materials」に変更してください。
-そしてその中に「GreenMaterial」という名前の新規マテリアルを作成し、格納します。<br>そして、先ほど作成したSphereにアタッチしてください。<br>この一連の作業が分からない場合は前回までの教材等で調べながら挑戦してみましょう。  </p>
-<p>マテリアルをアタッチできたら上記の画像のようにSphereが緑色になっているかと思います。</p>
+<p>そしてPlayerのOtherSettingsから「ColorSpace」を「Linear」に変更してください。<br>Linearに変更すると、全体的に少し明るくなりさらに明るいところの白飛びや、暗いところが黒く潰れるといったことが少なくなります。<br>しばらく待っているとUnityのシーンビューとゲームビューの色が若干変化します。  </p>
 <p><br></p>
+<h3 id="ガンマとリニアの違いについて">ガンマとリニアの違いについて</h3>
+<p>ガンマとリニアについての違いはUnityに限った話ではなく映像や写真を仕事で扱う方は知識としてあると思います。</p>
+<p>現在のUnityのプロジェクトでは滅多なことがない限り（ハードウェアがガンマ形式しかサポートしていないなど）基本的に「Linear」を使用します。</p>
+<p>Unityにおける２つの違いについて詳しく知りたい方は<a href="https://docs.unity3d.com/ja/2019.4/Manual/LinearRendering-LinearOrGammaWorkflow.html" target="_blank">こちら</a>の公式ドキュメントをご確認ください。</p>
+<p><br></p>
+<h2 id="ライトマップの作成">ライトマップの作成</h2>
 <p><img src="img/image1-7.png" alt=""></p>
-<p>ここまでできたら、GreenMaterialを選択し、インスペクターウィンドウから「Metallic」と「Smoothness」の値を変更してみましょう。<br>MetallicとSmoothnessの値を1に近づけるとより金属のようになり、0に近づけると光沢のないマットな質感に変わるかと思います。</p>
+<p>次に「Window -&gt; Rendering -&gt; LightingSettings」を開き、そのウィンドウの右下にある「Generate Lighting」ボタンを押してください。<br>結構時間がかかるのですが、しばらく待っているとライトマップを作成することができます。</p>
 <p><br></p>
-<h2 id="テクスチャ画像マテリアル">テクスチャ画像マテリアル</h2>
-<p><br></p>
-<p>次に画像を使ったマテリアルをアタッチします。<br>画像を使うと、木目やレンガ、壁紙といった見た目のマテリアルを簡単に作成することができます。</p>
+<h3 id="ライトマップとは">ライトマップとは</h3>
+<p>ライトマップとは、高負荷である光と影の計算を事前に行い、その情報をテクスチャに書き込んでおく機能のことです。<br>ライトマップを作成することにより実行時の負荷を軽くすることができます。</p>
+<div class="point">
+    ライトマッピングは、シーンのサーフェスの明るさを事前計算し、チャートやライトマップに結果を保存して後で使用するための処理です。
+
+    Unity は プログレッシブライトマッパー と呼ばれるシステムを使用しています。プログレッシブライトマッパーは、メッシュ、マテリアル、テクスチャ、ライトを考慮しながら、シーンの設定に基づいてシーンのライトマップをベイクします。ライトマッピングはレンダリングエンジンの不可欠な部分です。ライトマップが作成されると、ゲームオブジェクトは自動的にそれらを使用します。
+</div>
+
 <p><br></p>
 <p><img src="img/image1-8.png" alt=""></p>
-<p>通常のテクスチャ（画像）をインポートして使用しても構わないのですが、普通の画像のみだと例えば木目の凹凸や傷などが表現しきれず、のっぺりとした質感になってしまいます。<br>Unityではそのような画像に凹凸や傷などの立体感を出すためにノーマルマップ（法線マッピング）を貼り付けるのですが、こちらはPhotoshopやBlenderといった専用のアプリケーション等で制作する必要があるので、今回はAssetStoreからダウンロードして作成していきたいと思います。</p>
-<p>どのテクスチャを使用しても構わないのですが、今回は「WoodenFloorMaterials」を利用します。<br>AssetStoreからこちらを検索し、インポートしてください。少し時間がかかるかもしれません。</p>
+<p>ここまでできたら実際に実行してみましょう。</p>
+<p>デフォルトの状態よりもだいぶ明るい雰囲気になり、PCへの負荷も減ったかと思います。<br>しかし、最初からついていたリフレクションプローブなども非アクティブにしたので鏡が反射しなくなっています。<br>ですので、次はこちらを修正しましょう。</p>
 <p><br></p>
+<h2 id="リフレクションプローブを適用させる">リフレクションプローブを適用させる</h2>
 <p><img src="img/image1-9.png" alt=""></p>
-<p>インポートが完了したら、プロジェクトウィンドウから「Assets -&gt; Free -&gt; WoodenFloorPack -&gt; Materials -&gt; FoodenFloor」をヒエラルキーのPlaneにドラッグ&amp;ドロップでアタッチしてください。<br>こちらは既にノーマルマップが設定されていますので、きちんと凹凸が表現され、ただの画像を利用するよりも質感が高くなっています。</p>
+<p>ヒエラルキーウィンドウから新規で「ReflectionProbe」を作成してください。<br>鏡からみた景色を表示したいので、位置を鏡と同じポイントにしてください。<br>そしてLightingSettingsから「GenerateLighting」をクリックすると、きちんと鏡のリフレクションプローブが反映されました。<br>実際に実行して確認してみましょう。</p>
 <p><br></p>
 <p><img src="img/image1-10.png" alt=""></p>
-<p>このままでも十分なのですが、今回のPlaneの広さに対してテクスチャが少し大きく配置されてしまっているので調整します。<br>プロジェクトウィンドウからWoodenFloorを選択し、インスペクターの「Tiling」のX、Yをそれぞれ4に変更してください。</p>
-<p>これでより細かい木目のタイルになりました。</p>
-<p>Tilingはテクスチャ全体を何枚表示にするのかを設定します。<br>X、Yとも4にすると、「4×4」の計16枚の画像を並べているように見えます。
-長い廊下等を作成する場合は1枚のPlaneを拡大させてテクスチャを貼ると、伸びたようになってしまうのでTilingを使ってちょうどいい配置にする必要があります。</p>
+<p>同様にバスルームの鏡用にもリフレクションプローブを作成し、GenerateLightingを実行してみましょう。</p>
+<p>若干画質が悪いのですが、きちんと周りの背景を反射するようになったかと思います。</p>
 <p><br></p>
 <p><img src="img/image1-11.png" alt=""></p>
 <p>また、プロジェクトウィンドウで「WoodenFloor」を選択し、インスペクターウィンドウのアルベドのカラーを変更すると、上の画像のように色を乗算することもできます。</p>
@@ -344,7 +346,7 @@ Unityエディタの右上の「Layout」から好きなレイアウトを設定
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"建物オブジェクトへの適用","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"page1.md","mtime":"2021-02-17T05:43:20.374Z","type":"markdown"},"gitbook":{"version":"3.6.15","time":"2021-02-17T05:44:12.418Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"建物オブジェクトへの適用","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"page1.md","mtime":"2021-02-17T08:35:37.471Z","type":"markdown"},"gitbook":{"version":"3.6.15","time":"2021-02-17T08:35:47.193Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
