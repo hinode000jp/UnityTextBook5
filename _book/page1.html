@@ -226,17 +226,15 @@
 <p><br></p>
 <h2 id="skyboxを適用させる">SkyBoxを適用させる</h2>
 <p><img src="img/image1-11.png" alt=""></p>
-<p>また、プロジェクトウィンドウで「WoodenFloor」を選択し、インスペクターウィンドウのアルベドのカラーを変更すると、上の画像のように色を乗算することもできます。</p>
+<p>窓の外が何もない空間なので、SkyBoxを変更して少し雰囲気を出したいと思います。<br>AssetStoreを開き、検索バーに「skybox」と入力し検索してください。価格の部分で無料にチェックを入れると様々なSkyBoxが表示されると思いますので、任意のものを選択し、インポートしてください。<br>教材では「3D Skybox Pro」というアセットをインポートしました。</p>
 <p><br></p>
-<h2 id="ガラスマテリアル">ガラスマテリアル</h2>
-<p>次にガラズのマテリアルを作成します。<br>ガラスはアルファ値を変更することで簡単に表現することができ、色、Metallic、Smoothnessの値を変更するとすりガラスのような表現をすることも可能です。</p>
-<p><br></p>
-<h3 id="sphereを複製する">Sphereを複製する</h3>
 <p><img src="img/image1-12.png" alt=""></p>
-<p>ヒエラルキーウィンドウでSphereを選択し、Windowsの方は「Ctrl + d」、Macの方は「Cmd + d」を押してスフィアを複製します。<br>そして名前を「GlassSphere」とし、PositionXを1.5に変更してください。<br>これで複製されたスフィアが横に移動されました。</p>
+<p>アセットに入っているSkybox用のマテリアルをシーンビューの何もない場所にドラッグ&amp;ドロップすると、このように窓の外の景色が変わるかと思います。</p>
 <p><br></p>
+<h2 id="skyboxを適用させる">SkyBoxを適用させる</h2>
 <p><img src="img/image1-13.png" alt=""></p>
-<p>次にプロジェクトウィンドウのMaterialsフォルダの中に新規マテリアルを作成し、名前を「GlassMaterial」とします。<br>そしてそのマテリアルをヒエラルキーのGlassSphereにドラッグ&amp;ドロップでアタッチしてください。</p>
+<p>既にライティングの設定が済んでいるアセットであればいいのですが、もしライティングがまだの場合は前回までの講習を参考に自分なりにライティングの設定をしてみましょう。<br>ライトの色や強度を変えてみたり、自然光を増やしたりするのもいいと思います。ライティングに関してはセンスや慣れといった部分が強いと思いますので、何度も自分の納得のいくまでトライ&amp;エラーを繰り返して学習してください。</p>
+<p>現在のライティングの正確な見た目を確認したい時はLightingSettingsの「AutoGenerate」にチェックをつけてください。<br>必ず確認が終わったらチェックを外すようにしてください。（チェックをつけっぱなしにしていると常に）</p>
 <p><br></p>
 <p><img src="img/image1-14.png" alt=""></p>
 <p>次に色を変更します。<br>今回はガラスのような質感にしたいのでカラーサークルの下にあるRGBAのA（透明度）の部分の数値を25程度にしてください。<br>その他の色は任意のカラーにしてもらって構いません。そして、Metallicの数値を0.5、Smoothnessの数値を1に変更してください。</p>
@@ -347,7 +345,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"建物オブジェクトへの適用","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"page1.md","mtime":"2021-02-17T08:35:37.471Z","type":"markdown"},"gitbook":{"version":"3.6.15","time":"2021-02-17T08:35:47.193Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"建物オブジェクトへの適用","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"page1.md","mtime":"2021-02-18T02:23:43.992Z","type":"markdown"},"gitbook":{"version":"3.6.15","time":"2021-02-18T02:24:26.576Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
