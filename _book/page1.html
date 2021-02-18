@@ -247,48 +247,60 @@
 <p>既にライティングの設定が済んでいるアセットであればいいのですが、もしライティングがまだの場合は前回までの講習を参考に自分なりにライティングの設定をしてみましょう。<br>ライトの色や強度を変えてみたり、自然光を増やしたりするのもいいと思います。ライティングに関してはセンスや慣れといった部分が強いと思いますので、何度も自分の納得のいくまでトライ&amp;エラーを繰り返して学習してください。</p>
 <p>現在のライティングの正確な見た目を確認したい時はLightingSettingsの「GenerateLighting」をクリックしてください。  </p>
 <p><br></p>
-<h2 id="鏡のマテリアル">鏡のマテリアル</h2>
-<p>最後に鏡の質感を再現するマテリアルを作成します。鏡は写り込みの範囲等を設定する必要があるので少し複雑になります。</p>
-<h3 id="sphereを複製する">Sphereを複製する</h3>
-<p><img src="img/image1-16.png" alt=""></p>
-<p>ヒエラルキーウィンドウでSphereを選択し、Windowsの方は「Ctrl + d」、Macの方は「Cmd + d」を押してスフィアを複製します。<br>そして名前を「MirrorSphere」とし、PositionXを-1.5に変更してください。<br>これで複製されたスフィアが横に移動されました。</p>
-<p>次に、プロジェクトウィンドウからGreenMaterialを選択し、Sphereと同様に複製します。<br>そして名前を「MirrorMaterial」に変更し、カラーを白に、MetallicとSmoothnessを1にしてください。<br>最後にこのMirrorMaterialをMirrorSphereアタッチして準備は完了です。</p>
-<p><br></p>
-<h3 id="reflectionprobeの配置">ReflectionProbeの配置</h3>
-<p>次に、周囲の風景を反射させるためにReflectionProbeを作成します。<br>こちらは容易に反射を作成することができるのですが、処理が重いため多用する場合は注意してください。</p>
-<p><br></p>
-<p><img src="img/image1-17.png" alt=""></p>
-<p>ヒエラルキーウィンドウで右クリックし、「Light -&gt; ReflectionProbe」を選択してください。<br>そうすると、新規でReflectionProebeが作成されるので、座標をMirrorSphereと同じ位置にしてください。</p>
-<p><br></p>
-<p><img src="img/image1-18.png" alt=""></p>
-<p>ReflectionProbeのデフォルトでの反射対象オブジェクトは静的（static）オブジェクトのみになっています。<br>ですので、ヒエラルキーウィンドウでPlaneと全てのスフィアを選択し、インスペクターウィンドウで「Static」にチェックを入れてください。</p>
-<p><br></p>
-<p><img src="img/image1-19.png" alt=""></p>
-<p>そうすると、自動的にBakeが実行されます。しばらく待っているとMirrorSphereに周りの背景が反射して表示されるようになったかと思います。</p>
-<div class="point">
-    <h3 id="bakeとは">Bakeとは</h3>
-    Bakeとは、あらかじめ影や反射を計算してテクスチャに反映させる処理のことです。  
-    リアルタイムではなくベイク（焼き込み）にすることでアプリケーションの負荷を減らし画面の角付きやパソコンへの負荷を減らすことができます。
-</div>
+<h2 id="エフェクトの追加">エフェクトの追加</h2>
+<p>次にエフェクトを追加します。<br>エフェクトの追加方法は以前の講習教材を確認してください。<br>「Window -&gt; PackageManager」から「PostProcessing」をインポートし、Cameraに「Post-processing」を追加し、Layerを「Default」に、<br>新規オブジェクトを作成し、そちらに「Post-processVolume」をアタッチし、「IsGrobal」にチェックをつけて「New」を選択します。</p>
+<p>ここまでできたらあとはお好きなエフェクトを追加していってください。</p>
+<h3 id="エフェクトの種類">エフェクトの種類</h3>
+<p>簡単にエフェクトの解説をしていきます。</p>
+<hr>
 
+<h4 id="ambientocclusion">AmbientOcclusion</h4>
+<p>オブジェクトの角や隅などに影を落として「現実」のように見せる画面エフェクト。<br>部屋の隅などに影を落としてリアルな空間を演出できます。</p>
+<hr>
+
+<h4 id="autoexposure">AutoExposure</h4>
+<p>自動露出調整が可能なエフェクト。暗い部屋から明るい部屋に移動した際に起こる暗順応、明順応を表現できるエフェクトです。</p>
+<hr>
+
+<h4 id="bloom">Bloom</h4>
+<p>光を強調することのできるエフェクトです。暗い空間で特定の物を光らせたり、「ネオン」の表現が得意なエフェクトです。</p>
+<hr>
+
+<h4 id="chromaticaberration">ChromaticAberration</h4>
+<p>色収差を表現できるエフェクト</p>
+<hr>
+
+<h4 id="colorgrading">ColorGrading</h4>
+<p>色調補正機能</p>
+<hr>
+
+<h4 id="depth-of-field">Depth of Field</h4>
+<p>現実のカメラで撮影したようなピントを表現できます。（被写界深度）</p>
+<hr>
+
+<h4 id="grain">Grain</h4>
+<p>画面にノイズを付与できるエフェクトです。現実の暗い場所でノイズが乗りますがその効果を再現できます。</p>
+<hr>
+
+<h4 id="lensdistortion">LensDistortion</h4>
+<p>レンズの歪みを再現できるエフェクトです。魚眼レンズのような表現ができます。</p>
+<hr>
+
+<h4 id="motionblur">MotionBlur</h4>
+<p>動いている部分にブラーを付与するエフェクトです。スピード感などを表現するときに使用されます。</p>
+<hr>
+
+<h4 id="screenspacereflection">ScreenSpaceReflection</h4>
+<p>リアルタイムで物体の「反射」を表現できるエフェクトです。</p>
+<hr>
+
+<h4 id="vignette">Vignette</h4>
+<p>画面の端を暗くするエフェクトです。少しレトロな雰囲気を出したいときや空間を馴染ませる場合に使用します。</p>
 <p><br></p>
-<p>自動でBakeしなかった場合はWindowタブから「Rendering -&gt; LightingSettings」から「AutoGenerate」をチェックしてください。</p>
-<p><br></p>
-<p><img src="img/image1-20.png" alt=""></p>
-<p>これで綺麗に周りの背景を反射する鏡のマテリアルになったのですが、最初に作成したスフィアを見てもらうと、こちらも同様な形で反射が適用されています。</p>
-<p><br></p>
-<p><img src="img/image1-21.png" alt=""></p>
-<p>こちらは特に反射は適用させる必要がないのでReflectionProbeを無効にしたいと思います。<br>無効にする方法は、ヒエラルキーウィンドウでSphereを選択し、インスペクターウィンドウのMeshRendererコンポーネントにある「ReflectionProbe」をOffにするだけです。</p>
-<p>同様にGlassSphereのReflectionProbeも変更したいと思います。<br>ただしこちらはガラスを表現したマテリアルなので、周りからの反射を反映させたいと思います。</p>
-<p>現在は最初に作成したReflectionProbeの反射が反映されているので不自然な写り込みになっているので、このGlassSphere用のReflectionProbeを作成します。</p>
-<p><br></p>
-<p><img src="img/image1-22.png" alt=""></p>
-<p>まずはヒエラルキーウィンドウから「Light -&gt; ReflectionProbe」を新規作成してください。<br>そして座標をGlassSphereと同じ位置にします。</p>
-<p>少しゲームビューのカメラの位置が遠いので近づけておきましょう。</p>
-<p><br></p>
-<p><img src="img/image1-23.png" alt=""></p>
-<p>もし別のReflectionProbeも反映されている場合は、インスペクターウィンドウのReflectionProbesをSimpleに変更してください。<br>これでガラスの反射の方も完成です。</p>
-<p>ここまで作り終わりましたら忘れずに保存しておきましょう。</p>
+<p><img src="img/image1-16.png" alt=""></p>
+<p>また、おそらくBloomをよく使用すると思うのですが、VR系のアプリを作る場合はBloomの「FastMode」にチェックを入れてください。<br>これはBloomの描画クオリティを下げてパフォーマンスを優先にします。こちらにチェックを入れて特に問題がなければ基本的にチェックを入れておくようにしてください。</p>
+<p>ここまで作り終わりましたらLightingSettingsの「GenerateLighting」をクリックして実際にシーンを実行して確認してください。</p>
+<p>特に問題がなければ忘れずに保存しておきましょう。</p>
 
                                 
                                 </section>
@@ -328,7 +340,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"建物オブジェクトへの適用","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"page1.md","mtime":"2021-02-18T04:46:44.121Z","type":"markdown"},"gitbook":{"version":"3.6.15","time":"2021-02-18T04:46:51.887Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"建物オブジェクトへの適用","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"page1.md","mtime":"2021-02-18T06:35:42.263Z","type":"markdown"},"gitbook":{"version":"3.6.15","time":"2021-02-18T06:36:06.704Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
